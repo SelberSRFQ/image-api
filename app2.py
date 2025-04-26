@@ -4,13 +4,13 @@ import cv2
 import pytesseract
 import numpy as np
 
-app2 = Flask(__name__)
+app = Flask(__name__)
 
-@app2.route('/ping', methods=['GET'])
+@app.route('/ping', methods=['GET'])
 def ping():
     return 'pong', 200
 
-@app2.route('/ocr', methods=['POST'])
+@app.route('/ocr', methods=['POST'])
 def ocr_image():
     if 'file' not in request.files:
         return jsonify({'error': 'Nenhum arquivo enviado!'}), 400

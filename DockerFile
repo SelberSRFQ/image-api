@@ -13,8 +13,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY app2.py .
 
-# Expõe a porta que o Render vai bindar ($PORT)
+# Expõe a porta que o Render vai usar
 EXPOSE 10000
 
-# Comando para rodar a aplicação usando gunicorn
-CMD gunicorn app2:app2 --bind 0.0.0.0:10000
+# Comando para rodar o app usando a porta dinâmica
+CMD gunicorn app2:app2 --bind 0.0.0.0:$PORT

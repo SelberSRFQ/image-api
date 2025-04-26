@@ -1,20 +1,26 @@
-# Usa uma imagem oficial Python que já tem o básico
 FROM python:3.11-slim
 
-# Atualiza e instala o Tesseract OCR no sistema
-RUN apt-get update && apt-get install -y tesseract-ocr libtesseract-dev libleptonica-dev
+# Instala dependências do sistema
+RUN apt-get update && apt-get install -y \
+    tesseract-ocr \
+    libtesseract-dev \
+    libleptonica-dev \
+    libgl1 \
+    libglib2.0-0 \
+    && apt-get clean
 
 # Define diretório de trabalho
 WORKDIR /app
 
-# Copia os arquivos do projeto para dentro do container
+# Copia e instala dependências Python
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Copia o app
 COPY app2.py .
 
-# Expõe a porta que o Render vai usar
+# Expõe a porta para o Render usar
 EXPOSE 10000
 
-# Comando para rodar o app usando a porta dinâmica
+# Comando para rodar o app
 CMD gunicorn app2:app2 --bind 0.0.0.0:$PORT

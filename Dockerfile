@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install -y \
     libleptonica-dev \
     libgl1 \
     libglib2.0-0 \
+    libjpeg62-turbo \
     && apt-get clean
 
 # Define diretório de trabalho
@@ -19,8 +20,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copia o app
 COPY app2.py .
 
-# Expõe a porta para o Render usar
+# Expor a porta
 EXPOSE 10000
 
-# Comando para rodar o app
+# Comando de inicialização
 CMD gunicorn app2:app --bind 0.0.0.0:$PORT

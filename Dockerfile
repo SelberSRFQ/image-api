@@ -23,4 +23,4 @@ COPY app2.py .
 EXPOSE 10000
 
 # Comando para rodar o app
-CMD gunicorn app2:app2 --bind 0.0.0.0:$PORT
+CMD gunicorn app2:app --bind 0.0.0.0:$PORT

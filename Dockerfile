@@ -3,6 +3,7 @@ FROM python:3.11-slim
 # Instala dependências do sistema
 RUN apt-get update && apt-get install -y \
     tesseract-ocr \
+    tesseract-ocr-por \
     libtesseract-dev \
     libleptonica-dev \
     libgl1 \

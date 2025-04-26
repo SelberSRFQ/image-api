@@ -25,4 +25,5 @@ COPY app2.py .
 EXPOSE 10000
 
 # Comando de inicialização
-CMD gunicorn app2:app --bind 0.0.0.0:$PORT --access-logfile - --error-logfile -
+CMD gunicorn app2:app --bind 0.0.0.0:$PORT --workers 1 --threads 1 --access-logfile - --error-logfile -
+
